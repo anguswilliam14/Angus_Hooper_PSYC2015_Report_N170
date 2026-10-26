@@ -1,6 +1,6 @@
 ---
 title: "ERP analysis report (customise title to fit your topic)"
-author: "Your name"
+author: "Angus William Hooper"
 date: today
 format: 
     html:
