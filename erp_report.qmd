@@ -171,8 +171,8 @@ for cond in CONDITIONS:
 ```{python} 
 selected_electrode = "PO8"
 plot_title = "Grand average for N170: Faces versus cars"
-analysis_window_start = 0.136   # or 0.136 for the 26 ms shift
-analysis_window_end = 0.176     # or 0.176 for the 26 ms shift
+analysis_window_start = 0.136   
+analysis_window_end = 0.176     
 ```
 
 ### Grand average: expected effect
