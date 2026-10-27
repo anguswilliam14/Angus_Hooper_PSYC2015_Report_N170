@@ -171,8 +171,8 @@ for cond in CONDITIONS:
 ```{python} 
 selected_electrode = "PO8"
 plot_title = "Grand average for N170: Faces versus cars"
-analysis_window_start = 0.11   # or 0.136 for the 26 ms shift
-analysis_window_end = 0.15     # or 0.176 for the 26 ms shift
+analysis_window_start = 0.136   # or 0.136 for the 26 ms shift
+analysis_window_end = 0.176     # or 0.176 for the 26 ms shift
 ```
 
 ### Grand average: expected effect
@@ -182,10 +182,10 @@ Set the parameters for the specified analysis window, which will include dotted 
 Note: for some components, @kappenman2021 refer to two electrode sites. If this is the case for your chosen component, the analysis requires a consideration of lateralisation; please make an appointment to discuss the required analysis tweaks with Ina.
 
 ```{python}
-selected_electrode = "FCz"
-plot_title = "Grand average for N2: Incompatible versus compatible Flanker stimuli"
-analysis_window_start = 0.2
-analysis_window_end = 0.4
+selected_electrode = "PO8"
+plot_title = "Grand average for N170: Faces versus cars"
+analysis_window_start = 0.136   # or 0.136 for the 26 ms shift
+analysis_window_end = 0.176     # or 0.176 for the 26 ms shift
 
 plot_evokeds(grand_avs, picks = selected_electrode, invert_y = True, title = plot_title, vlines = [analysis_window_start, analysis_window_end])
 
