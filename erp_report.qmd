@@ -52,6 +52,11 @@ Complete the following subsections using the information from @kappenman2021. Do
 
 Provide information on the number of participants and their demographics (sex, age, handedness) as well as the inclusion criteria for the study.
 
+```{python}
+# participants excluded
+EXCLUDE = ["001", "005", "016"]
+```
+
 ### Procedure
 
 Describe the task that participants completed. This should be tailored to the task / component that you chose to analyse.
@@ -126,7 +131,6 @@ for raw_file in RAW_PATH.glob("*_raw.fif.gz"):
 ```
 
 ### Epoching and averaging
-
 ```{python}
 #| output: false
 
@@ -137,7 +141,15 @@ for cond in CONDITIONS:
     ss_avs[cond] = []
 
 for processed_file in PROCESSED_PATH.glob("*_raw.fif.gz"):
-    
+
+    # extract subject number
+    subj_ID = processed_file.stem.split("_")[0]
+
+    # check to see if participant should be excluded
+    if subj_ID in EXCLUDE:
+        # skip the rest of the loop and move on to the next participant
+        continue
+
     # read in preprocessed file
     processed = SimpleRaw(processed_file)
 
