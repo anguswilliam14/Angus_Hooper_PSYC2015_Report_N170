@@ -37,13 +37,13 @@ PROCESSED_PATH = Path("data/processed")
 
 ## Introduction
 
-The N170 component is an event related potential that has a negative polarity (hence the “N” in N170). The component occurs at a latency of 170ms post stimulus, and its topography tends to be around the occipital-temporal area and is typically right-lateralized, meaning the negative deflection is usually larger on the right hemisphere (@Bentin1996). 
-The functional aspect of the component is believed to reflect the brains’ ability or tendency to distinguish between a facial stimulus and an object. The component is elicited under conditions where facial stimuli are presented or manipulated. component has been observed as present even if a facial stimulus only contains the eyes/ and eye area (@Itier2007).
+The N170 component is an event related potential that has a negative polarity (hence the “N” in N170). The component occurs at a latency of 170ms post stimulus, and its topography tends to be around the occipital-temporal area and is typically right-lateralized, meaning the negative deflection is usually larger on the right hemisphere [@Bentin1996]. 
+The functional aspect of the component is believed to reflect the brains’ ability or tendency to distinguish between a facial stimulus and an object. The component is elicited under conditions where facial stimuli are presented or manipulated. component has been observed as present even if a facial stimulus only contains the eyes/ and eye area [@Itier2007].
 
 
 ### Controversy Surrounding the Component
 
-The N170 ERP component has been the subject of considerable debate regarding its functional significance and neural origins. While some researchers argue that it reflects neural processes specific to face perception (@Bentin1996 @Eimer2011) others suggest that it may reflect broader visual recognition mechanisms shaped by experience and expertise, which also extend to familiar non-face objects (@Gauthier2000) . Furthermore, questions remain about the extent to which the N170 is genuinely face-specific, with evidence suggesting that its response may be influenced by the perceptual characteristics of visual stimuli [@Thierry2007] . Overall, although the N170 is widely recognised as an important marker of early face processing, its precise functional role and neural generators remain debated.
+The N170 ERP component has been the subject of considerable debate regarding its functional significance and neural origins. While some researchers argue that it reflects neural processes specific to face perception [@Bentin1996] [@Eimer2011] others suggest that it may reflect broader visual recognition mechanisms shaped by experience and expertise, which also extend to familiar non-face objects [@Gauthier2000] . Furthermore, questions remain about the extent to which the N170 is genuinely face-specific, with evidence suggesting that its response may be influenced by the perceptual characteristics of visual stimuli [@Thierry2007]. Overall, although the N170 is widely recognised as an important marker of early face processing, its precise functional role and neural generators remain debated.
 
 
 
