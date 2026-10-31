@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "865feac5",
+   "id": "336d4ff5",
    "metadata": {},
    "source": [
     "---\n",
@@ -28,7 +28,7 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "2f7e22e1",
+   "id": "faabef13",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -44,7 +44,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "f7692af5",
+   "id": "8c899a22",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -56,31 +56,34 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a1a0425f",
+   "id": "75b28c8f",
    "metadata": {},
    "source": [
     "## Introduction\n",
     "\n",
-    "Provide an introduction to the ERP component of your choice here. This should include a brief literature review -- see report instructions for details.\n",
-    "Use appropriate subheadings as required: adapt the ones below, create new ones or delete as needed.\n",
+    "The N170 component is an event related potential that has a negative polarity (hence the “N” in N170). The component occurs at a latency of 170ms post stimulus, and its topography tends to be around the occipital-temporal area and is typically right-lateralized, meaning the negative deflection is usually larger on the right hemisphere (@Bentin1996). \n",
+    "The functional aspect of the component is believed to reflect the brains’ ability or tendency to distinguish between a facial stimulus and an object. The component is elicited under conditions where facial stimuli are presented or manipulated. component has been observed as present even if a facial stimulus only contains the eyes/ and eye area (@Itier2007).\n",
     "\n",
-    "### Intro subheading 1\n",
     "\n",
-    "### Intro subheading 2\n",
+    "### Controversy Surrounding the Component\n",
+    "\n",
+    "The N170 ERP component has been the subject of considerable debate regarding its functional significance and neural origins. While some researchers argue that it reflects neural processes specific to face perception (@Bentin1996 @Eimer2011) others suggest that it may reflect broader visual recognition mechanisms shaped by experience and expertise, which also extend to familiar non-face objects (@Gauthier2000) . Furthermore, questions remain about the extent to which the N170 is genuinely face-specific, with evidence suggesting that its response may be influenced by the perceptual characteristics of visual stimuli [@Thierry2007] . Overall, although the N170 is widely recognised as an important marker of early face processing, its precise functional role and neural generators remain debated.\n",
+    "\n",
+    "\n",
     "\n",
     "## Methods\n",
     "\n",
-    "Complete the following subsections using the information from @kappenman2021. Don't forget to mention that the data are from the ERP CORE resource under a Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). \n",
+    "Data was gathered from the ERP CORE @kappenman2021 resource under a Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). \n",
     "\n",
     "### Participants\n",
     "\n",
-    "Provide information on the number of participants and their demographics (sex, age, handedness) as well as the inclusion criteria for the study."
+    "Note: Three particpants were excluded, refer to the code below for particpants ID's "
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "de05472c",
+   "id": "1716b766",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -90,31 +93,37 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2f92ea05",
+   "id": "759579c4",
    "metadata": {},
    "source": [
-    "The ERP CORE resource contains data from 40 participants (25 female, 15 male; age M = 21.5 years, SD = 2.87, range 18-30; 38 right-handed; @kappenman2021). Following the exclusion criteria applied by @kappenman2021, three participants were excluded. Participants 1 and 16 had fewer than 50% of face trials remaining after artifact rejection, and participant 5 had artifacts on more than 25% of trials (as listed in the resource's Subject_Summary spreadsheet). The final sample consisted of 37 participants (24 female, 13 male; age M = 21.5 years, SD = 2.96, range 18-30; 35 right-handed).\n",
+    "The ERP CORE resource contains data from 40 participants (25 female, 15 male; age M = 21.5 years, SD = 2.87, range 18-30; 38 right-handed; @kappenman2021). Following the exclusion criteria applied by @kappenman2021, three participants were excluded. Participants 1 and 16 had fewer than 50% of face trials remaining after artifact rejection, and participant 5 had artifacts on more than 25% of trials (as listed in the resource's Subject_Summary spreadsheet). The final sample consisted of 37 participants (24 female, 13 male; age M = 21.5 years, SD = 2.96, range 18-30; 35 right-handed). \n",
     "\n",
     "### Procedure\n",
     "\n",
-    "Describe the task that participants completed. This should be tailored to the task / component that you chose to analyse.\n",
+    "The N170 was elicited by a face perception task that @kappenman2021 adapted from Rossion and Caharel (2011). On each trial, a single image of a face, a car, a scrambled face or a scrambled car appeared at the centre of the screen for 300 ms, followed by a blank interval of 1100-1300 ms. Participants judged whether each image was an \"object\" (face or car) or a \"texture\" (scrambled face or scrambled car). The N170 is isolated by contrasting faces with cars.\n",
     "\n",
     "### EEG recording\n",
     "\n",
     "Describe the EEG recording parameters: amplifier and type of cap used, electrode positions, CMS / DRL electrode positions, EOG electrode positions, and filter parameters.\n",
     "\n",
+    "EEG was recorded with a Biosemi ActiveTwo system using active electrodes mounted in an elastic cap with thirty scalp sites in the International 10/20 system. Ocular artifacts where recorded with an EOG from an electrode below the right eye. Signals were low-pass filtered and digitised at 1024 Hz with 24-bit resolution.Referencing performed offline [@kappenman2021].\n",
+    "\n",
     "### Analysis parameters\n",
     "\n",
     "Choose these parameters appropriate for the component that you are analysing. Use those recommended by @kappenman2021; see their Table 1. This holds for all parameters except for the filter parameters; for these, you can stick to the example parameters provided below.\n",
     "Describe the parameters in this section and also modify the code accordingly\n",
+    "Parameters followed the values recommended for the N170 by @kappenman2021 (their Table 1), except for the filter and artifact-rejection settings, which followed the course pipeline.  \n",
     "\n",
-    "#### Preprocessing parameters"
+    "\n",
+    "#### Preprocessing parameters\n",
+    "\n",
+    "Data were re-referenced to the average of all electrodes, following @kappenman2021, who used an average reference for the N170. The signal was band-pass filtered between 0.1 and 30 Hz. [@kappenman2021] applied a 0.1 Hz high-pass filter and corrected ocular artifacts with independent component analysis (ICA), which was not part of the present pipeline. "
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "4e1b3c82",
+   "id": "4b35b873",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -129,16 +138,17 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a25dab9c",
+   "id": "02b7d158",
    "metadata": {},
    "source": [
-    "#### Epoching parameters"
+    "#### Epoching parameters\n",
+    "The selected electrode was PO8 and the analysis window was 136ms to 176ms, shifted 26ms after the course notes 110 - 150ms recomendation. The epoch window was -200ms to 800ms, and thus the baseline was -200ms."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "5bdfc31a",
+   "id": "03889f70",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -158,7 +168,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3c1e85c5",
+   "id": "1ef6850a",
    "metadata": {},
    "source": [
     "## Data analysis\n",
@@ -169,7 +179,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "77c892d1",
+   "id": "ac67c695",
    "metadata": {},
    "outputs": [
     {
@@ -7477,7 +7487,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e820fd5c",
+   "id": "bcb169f0",
    "metadata": {},
    "source": [
     "### Epoching and averaging"
@@ -7486,7 +7496,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "d14f8483",
+   "id": "c6de1663",
    "metadata": {},
    "outputs": [
     {
@@ -83329,7 +83339,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2cbf5aaf",
+   "id": "e9435377",
    "metadata": {},
    "source": [
     "### Grand average"
@@ -83338,7 +83348,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "75959476",
+   "id": "1c311982",
    "metadata": {},
    "outputs": [
     {
@@ -83369,7 +83379,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "dbf952a4",
+   "id": "908c459f",
    "metadata": {},
    "source": [
     "## Results "
@@ -83378,7 +83388,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "d3963cc5",
+   "id": "a1a0f7a3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -83390,20 +83400,17 @@
   },
   {
    "cell_type": "markdown",
-   "id": "95159a02",
+   "id": "fbcc5db7",
    "metadata": {},
    "source": [
     "### Grand average: expected effect\n",
-    "\n",
-    "Plot the electrode deemed most representative for the effect by @kappenman2021.\n",
-    "Set the parameters for the specified analysis window, which will include dotted vertical lines marking the analysis window on the plot.\n",
-    "Note: for some components, @kappenman2021 refer to two electrode sites. If this is the case for your chosen component, the analysis requires a consideration of lateralisation; please make an appointment to discuss the required analysis tweaks with Ina."
+    "Depicted below is the grand average plot of the representative electrode (PO8) "
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "8822be53",
+   "id": "ac42aa9b",
    "metadata": {},
    "outputs": [
     {
@@ -83427,7 +83434,7 @@
        "[<Figure size 768x576 with 2 Axes>]"
       ]
      },
-     "execution_count": 50,
+     "execution_count": 10,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -83443,7 +83450,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0d96dbb7",
+   "id": "062f7865",
    "metadata": {},
    "source": [
     "## Discussion and reflection\n",
@@ -83470,6 +83477,18 @@
    "language": "python",
    "name": "python3",
    "path": "/Users/anguswilliamhooper/Applications/MNE-Python/1.12.1_0/.mne-python/share/jupyter/kernels/python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.9"
   }
  },
  "nbformat": 4,
