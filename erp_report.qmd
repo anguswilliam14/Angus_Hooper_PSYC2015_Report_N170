@@ -7,7 +7,7 @@ format:
         embed-resources: true
         toc: true
         toc-depth: 3
-        code-fold: true
+        code-fold: false
         theme: flatly # adapt this to a theme of your choice if you'd like
 execute:
     warning: false
@@ -35,11 +35,12 @@ RAW_PATH = Path("data/raw")
 PROCESSED_PATH = Path("data/processed")
 ```
 
-## Introduction
-
-The N170 component is an event related potential that has a negative polarity (hence the “N” in N170). The component occurs at a latency of 170ms post stimulus, and its topography tends to be around the occipital-temporal area and is typically right-lateralized, meaning the negative deflection is usually larger on the right hemisphere [@Bentin1996]. 
+## Introduction 
+First discovered in 1996 in seminal work by [@Bentin1996],
+the N170 component is an event related potential that has a negative polarity (hence the “N” in N170). The component occurs at a latency of 170ms post stimulus, and its topography tends to be around the occipital-temporal area and is typically right-lateralized, meaning the negative deflection is usually larger on the right hemisphere [@Bentin1996]. 
 The functional aspect of the component is believed to reflect the brains’ ability or tendency to distinguish between a facial stimulus and an object. The component is elicited under conditions where facial stimuli are presented or manipulated. component has been observed as present even if a facial stimulus only contains the eyes/ and eye area [@Itier2007].
 
+Understanding this component may help researchers and physicians understand a multitude of psychiatric conditions, such as Autism Spectrum Disorder (ASD), social anxiety, prospagnosia (face blindness), dementia and schizophrenia. 
 
 ### Controversy Surrounding the Component
 
@@ -64,19 +65,15 @@ The ERP CORE resource contains data from 40 participants (25 female, 15 male; ag
 
 ### Procedure
 
-The N170 was elicited by a face perception task that @kappenman2021 adapted from Rossion and Caharel (2011). On each trial, a single image of a face, a car, a scrambled face or a scrambled car appeared at the centre of the screen for 300 ms, followed by a blank interval of 1100-1300 ms. Participants judged whether each image was an "object" (face or car) or a "texture" (scrambled face or scrambled car). The N170 is isolated by contrasting faces with cars.
+The N170 was elicited by a face perception task that @kappenman2021 adapted from [@Rossion2011]. On each trial, a single image of a face, a car, a scrambled face or a scrambled car appeared at the centre of the screen for 300 ms, followed by a blank interval of 1100-1300 ms. Participants judged whether each image was an "object" (face or car) or a "texture" (scrambled face or scrambled car). The N170 is isolated by contrasting faces with cars.
 
 ### EEG recording
 
-Describe the EEG recording parameters: amplifier and type of cap used, electrode positions, CMS / DRL electrode positions, EOG electrode positions, and filter parameters.
-
-EEG was recorded with a Biosemi ActiveTwo system using active electrodes mounted in an elastic cap with thirty scalp sites in the International 10/20 system. Ocular artifacts where recorded with an EOG from an electrode below the right eye. Signals were low-pass filtered and digitised at 1024 Hz with 24-bit resolution.Referencing performed offline [@kappenman2021].
+EEG was recorded with a Biosemi ActiveTwo system using active electrodes mounted in an elastic cap. Thirty scalp sites followed the International 10/20 system. The common mode sense (CMS) electrode was at PO1 and the driven right leg (DRL) electrode at PO2. Horizontal EOG was recorded from electrodes lateral to the external canthus of each eye, and vertical EOG from an electrode below the right eye. Signals were low-pass filtered during recording (cutoff 204.8 Hz) and digitised at 1024 Hz. Referencing was performed offline [@kappenman2021].
 
 ### Analysis parameters
 
-Choose these parameters appropriate for the component that you are analysing. Use those recommended by @kappenman2021; see their Table 1. This holds for all parameters except for the filter parameters; for these, you can stick to the example parameters provided below.
-Describe the parameters in this section and also modify the code accordingly
-Parameters followed the values recommended for the N170 by @kappenman2021 (their Table 1), except for the filter and artifact-rejection settings, which followed the course pipeline.  
+Parameters followed the values recommended for the N170 by @kappenman2021, except for the filter and artifact-rejection settings, which followed the course pipeline.  
 
 
 #### Preprocessing parameters
@@ -96,6 +93,7 @@ REFERENCE = None
 ```
 
 #### Epoching parameters
+
 The selected electrode was PO8 and the analysis window was 136ms to 176ms, shifted 26ms after the course notes 110 - 150ms recomendation. The epoch window was -200ms to 800ms, and thus the baseline was -200ms.
 
 ```{python}
@@ -117,6 +115,8 @@ REJECT = {
 ## Data analysis
 
 ### Preprocessing
+
+Each raw file was re-referenced and filtered with the custom preprocessing function (scripts/preprocpy), using the reference and filter settings, and the processed data was saved to the data/processed file.
 
 ```{python}
 #| eval: true # set this to false if you don't want preprocessing to recompute
@@ -143,6 +143,8 @@ for raw_file in RAW_PATH.glob("*_raw.fif.gz"):
 ```
 
 ### Epoching and averaging
+
+For each included participant, the processed data were epoched (-200 to 800 ms, baseline -200 to 0 ms with the rejection thresholds above) and the epochs for faces and cars were averaged separately.
 ```{python}
 #| output: false
 
@@ -180,6 +182,8 @@ for processed_file in PROCESSED_PATH.glob("*_raw.fif.gz"):
 
 ### Grand average
 
+The single-participant averages for each condition were averaged across the 37 participants to create the grand averages.
+
 ```{python}
 #| output: false
 
@@ -192,6 +196,8 @@ for cond in CONDITIONS:
 ```
 
 ## Results 
+
+The plot shows the grand average ERPs for faces and cars at PO8 (N = 37), with negative voltage plotted upward. The dashed vertical lines mark the analysis window of 136-176 ms, which is the window recommended by @kappenman2021 (110-150 ms) shifted 26 ms later. Both conditions show an early positive peak of about 5-6 µV at around 125-140 ms. Within the analysis window, the face waveform becomes negative, reaching about -1.8 µV at approximately 170 ms, whereas the car waveform stays close to zero and does not become negative. The face deflection occurs roughly 15-20 ms earlier than the car waveform's peak.
 ```{python} 
 selected_electrode = "PO8"
 plot_title = "Grand average for N170: Faces versus cars"
@@ -199,7 +205,7 @@ analysis_window_start = 0.136
 analysis_window_end = 0.176     
 ```
 
-### Grand average: expected effect
+### Grand average: 
 Depicted below is the grand average plot of the representative electrode (PO8) 
 ```{python}
 selected_electrode = "PO8"
@@ -214,11 +220,12 @@ plot_evokeds(grand_avs, picks = selected_electrode, invert_y = True, title = plo
 
 ## Discussion and reflection
 
-Provide a brief discussion of the effect that you observed. Were you able to replicate the ERP component as observed by @kappenman2021? If not, what was different in your grand average ERP? 
 
-What did you learn by applying the analysis process to a new dataset?
+The replication in the present paper mimics the results of @kappenman2021 well. There is a clear difference between the car condition and the face condition within the analysis window across both the N170 grand averages. While this report replicated well and produced similar results to @kappenman2021, the abscence of the independant component analysis (ICA) stage could have been the cause of any discrepancies between the two plots. 
 
+Upon reflection, this course has been very rewarding to complete. Initially learning how to set up the file paths was what I found the most difficult, it took many tries and troubleshooting to get this right. Learning about the file paths has been satisfying, and I'm sure I will rely on this learning in the near future and for many years to come. I also found learning about programing more generally to be rewarding, when starting this course I did not have much previous experience with computers or programming software, and so the learning curve was steep at times. The skills I have learnt have been difficult to pick up at first, but once I began to understand what was going on it became really enjoyable to write code and see real results. One key thing I can take away from this course is an appreciation for how complex, yet ordered and systematic programming is, and important this topic is to the research process within cognitive neuroscience. 
 
+Applying the pipeline to this dataset was different in that I had to exclude some particpants which we previously had not covered in detail in class, this was interesting to learn about and I am sure I will use this skill in future coursework and research projects.  
 ### AI Declaration
 ## Declaration of generative AI use
 
